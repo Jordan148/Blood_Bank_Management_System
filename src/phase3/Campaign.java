@@ -43,14 +43,28 @@ public class Campaign {
         return campaignName;
     }
 
+     public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
+    }
+
     public String getCampaignStartDate() {
         return campaignStartDate;
     }
 
+    public void setCampaignStartDate(String campaignStartDate) {
+        this.campaignStartDate =  campaignStartDate;
+    }
+    
+    
+    
     public String getCampaignVenue() {
         return campaignVenue;
     }
-
+    
+    
+    public void setcampaignVenue(String campaignVenue) {
+        this.campaignVenue =  campaignVenue;
+    }
     public double getCampaignTotalDonatedBlood() {
         return campaignTotalDonatedBlood;
     }

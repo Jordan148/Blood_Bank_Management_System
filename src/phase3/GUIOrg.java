@@ -795,7 +795,7 @@ public class GUIOrg extends javax.swing.JFrame {
         }
         if (checkBoxUOrgUpdate.isSelected()) {
             try {
-                int Oid=0;
+                
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/phase3", "root", "");
                 myStat = myConn.createStatement();
                 myStat.execute("UPDATE organization SET orgName = '" + txtOrgName.getText() + "' , orgAddress = '" + txtOrgAddress.getText() + "' , orgPhoneNo = '" + txtOrgPhoneNo.getText() + "' , orgEmail = '" + txtOrgEmail.getText() + "' WHERE id = '"+lblOrgIDOut.getText()+"'");
@@ -903,15 +903,97 @@ public class GUIOrg extends javax.swing.JFrame {
                             myRs.getString("campaignVenue") + "\n" + myRs.getString("orgName") + "<BR>";
 
                 }
+                
+                  if (cmpUpdate.isSelected()) {
+            try {
+                    
+                myStat = myConn.createStatement();
+                myStat.execute("UPDATE campaign SET campaignName = '" + txtCampaignName.getText() + "' , campaignStartDate = '" + jDateChooser1.getDate() + "' , campaignVenue = '" + txtCampainVenue.getText()+"'");
+                if (!txtCampaignName.getText().isEmpty()) {
+                campaign[i].setCampaignName(txtOrgName.getText());
+                        
+                myStat.execute("UPDATE campaign SET campaignName = '" + txtCampaignName.getText() + "' , campaignStartDate = '" + jDateChooser1.getDate() + "' , campaignVenue = '" + txtCampainVenue.getText()+"'");
+                cNameOutput.setText(campaign[i].getCampaignName());
+            } else {
+                //lblOrgNameOut.setForeground(Color.red);
+                cNameOutput.setText("Please enter a name!");
+            }
+
+            if (jDateChooser1.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Choose Date from Right Box.", "Error", JOptionPane.ERROR_MESSAGE);
+                jDateChooser1.grabFocus();
+            } else {
+                //lblOrgAddressOut.setForeground(Color.red);
+                
+              jDateChooser1.getDate();
+              cDate.setText(jDateChooser1.getDateFormatString());
+            }
+
+            if (!txtCampainVenue.getText().isEmpty()) {
+               organization.setOrgnizationAddress(txtOrgAddress.getText());
+                lblOrgAddressOut.setText(organization.getOrgnizationAddress());
+                
+                
+                
+                organization.setOrgnizationPhoneNo(txtOrgPhoneNo.getText());
+                lblOrgPhoneNoOut.setText(organization.getOrgnizationPhoneNo());
+                
+            }else {
+                //lblOrgPhoneNoOut.setForeground(Color.red);
+                txtCampainVenue.setText("Please enter a Venue!");
+            }
+
+           
+               
+            } catch (SQLException e) {
+                try {
+                    myStat.execute("SELECT * FROM `campaign`");
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUIOrg.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    myStat.execute("UPDATE campaign SET campaignName = '" + txtCampaignName.getText() + "' , campaignStartDate = '" + jDateChooser1.getDate() + "' , campaignVenue = '" + txtCampainVenue.getText() + "' WHERE id = '1'");
+                    //myStat.execute("UPDATE `organization` SET `orgName` = "+txtOrgName.getText()+", `orgAddress` = "+ txtOrgAddress.getText()+", `orgPhoneNo` = "+ txtOrgPhoneNo.getText()+", `orgEmail` = "+ txtOrgEmail.getText()+" WHERE id = '1';");
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUIOrg.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+//            campaign.updateDetails(txtOrgName.getText(), txtOrgAddress.getText(), txtOrgPhoneNo.getText(), txtOrgEmail.getText());
+
+        }
+                
+                
+                
                 campaignDetail += campaignDetailString;
                 cNameOutput.setText(campaign[i].getCampaignName());
                 cDate.setText(startDate);
                 cVenue.setText(campaign[i].getCampaignVenue());
+               
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
             } catch (SQLException e) {
             }
 
         }
+        
+      
+        
+        
+        
+        
         
         
         
