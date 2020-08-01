@@ -1014,7 +1014,9 @@ public class GUIOrg extends javax.swing.JFrame {
             gender = genderArray[1];
         }
 
-        for (int i = countDonor; i == countDonor; i++) {
+        
+        //change loop conditio from i = 0
+        for (int i = 0; i == countDonor; i++) {
             donor[i] = donorFactory.createDonor(donorFactoryType, txtDonorUmpStudID.getText(), txtDonorUmpStudName.getText(), gender, Integer.parseInt(txtDoorUmpStudAge.getText()), Double.parseDouble(txtDonorUmpStudTotalBlood.getText()));
             //donor[i] = new DonorUmpStudent(txtDonorUmpStudID.getText(), txtDonorUmpStudName.getText(), gender, Integer.parseInt(txtDoorUmpStudAge.getText()), Double.parseDouble(txtDonorUmpStudTotalBlood.getText()));
             campaign[(Integer.parseInt(txtDonorUmpStudCampaignNo.getText())) - 1].setDonor(donor[i]);
